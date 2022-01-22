@@ -10,17 +10,19 @@ class Bird {
   private:
     Image bird;
     SVG *drawing = nullptr;
-    double x = 400;
-    double y = 500;
-    double vy = 0;
+    double startX = 400;
+    double startY = 500;
+    double vy;
     int speed = 5;
+    int x, y;
 
   public:
 
     Bird(SVG &drawing) {
       this->drawing = &drawing;
-      bird = Image("img/Bee.svg", x, y, 80, 80, &drawing);
-      // bird.setSize(80, 80); - if needed
+      x = startX;
+      y = startY;
+      bird = Image("img/Bee.svg", x, y, 100, 100, &drawing);
     }
 
     void moveDown() {
@@ -37,6 +39,12 @@ class Bird {
         bird.rotateTo(-20);
         bird.moveTo(x, y);
         bird.rotateTo(20);
+    }
+
+    void center() {
+      x = startX;
+      y = startY;
+      bird.moveTo(x, y);
     }
 
     double getX() {
