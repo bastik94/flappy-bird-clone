@@ -10,11 +10,11 @@ class Bird {
   private:
     Image bird;
     SVG *drawing = nullptr;
+    int x, y ,vy;
     double startX = 400;
     double startY = 500;
-    double vy;
     int speed = 5;
-    int x, y;
+    int birdSize = 400;
 
   public:
 
@@ -22,7 +22,7 @@ class Bird {
       this->drawing = &drawing;
       x = startX;
       y = startY;
-      bird = Image("img/Bee.svg", x, y, 100, 100, &drawing);
+      bird = Image("img/Bee.svg", x, y, birdSize, birdSize, &drawing);
     }
 
     void moveDown() {
@@ -54,6 +54,7 @@ class Bird {
     double getY() {
       return y;
     }
+
 };
 
 #endif

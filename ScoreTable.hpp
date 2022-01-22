@@ -27,14 +27,6 @@ class ScoreTable {
     void hide() {
       scoreTable.hide();
     }
-
-    double getX() {
-      return x;
-    }
-    
-    double getY() {
-      return y;
-    }
 };
 
 #endif
