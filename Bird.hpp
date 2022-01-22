@@ -14,7 +14,8 @@ class Bird {
     double startX = 400;
     double startY = 500;
     int speed = 5;
-    int birdSize = 400;
+    int birdBigSize = 500;
+    int birdNormalSize = 100;
 
   public:
 
@@ -22,7 +23,7 @@ class Bird {
       this->drawing = &drawing;
       x = startX;
       y = startY;
-      bird = Image("img/Bee.svg", x, y, birdSize, birdSize, &drawing);
+      bird = Image("img/Bee.svg", x, y, birdBigSize, birdBigSize, &drawing);
     }
 
     void moveDown() {
@@ -53,6 +54,10 @@ class Bird {
     
     double getY() {
       return y;
+    }
+
+    void setNormalSize() {
+      bird.setSize(birdNormalSize, birdNormalSize);
     }
 
 };
