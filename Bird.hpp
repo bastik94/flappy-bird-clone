@@ -10,10 +10,10 @@ class Bird {
   private:
     Image bird;
     SVG *drawing = nullptr;
-    double x = 500;
+    double x = 400;
     double y = 500;
     double vy = 0;
-    int speed = 1;
+    int speed = 5;
 
   public:
 
@@ -24,14 +24,14 @@ class Bird {
     }
 
     void moveDown() {
-        vy = speed * (y + 5);
+        vy = y + speed;
         y = vy;
         
         bird.moveTo(x, y);
     }
     
     void moveUp() {
-        vy = speed * (y - 50);
+        vy = y - 23 * speed;
         y = vy;
         
         bird.rotateTo(-20);
