@@ -13,10 +13,11 @@ class Obstacle {
     Rect *Lower = nullptr;;
     int gap = 300;
     int upperHeight = 0;
-    int x = 950;
+    int x = 1000;
     int upperY = 0;
     int lowerY = 0;
     int width = 40;
+    bool passed = false;
 
     
 
@@ -25,12 +26,12 @@ class Obstacle {
     Obstacle(SVG &drawing, int random) {
       this->drawing = &drawing;
       this->Upper = new Rect(x, 0, width, 50 + random, &drawing);
-      this->Upper->setFill("green");
+      this->Upper->setFill(235, 169, 55);
       this->lowerY = gap + 50 + random;
       this->upperHeight = 50 + random;
         
       this->Lower = new Rect(x, lowerY, width, 1000 - lowerY, &drawing);
-      this->Lower->setFill("green");
+      this->Lower->setFill(235, 169, 55);
     }
 
     void move() {
@@ -59,7 +60,6 @@ class Obstacle {
         return upperHeight;
     }
     
-
     int getUpperY() {
       return upperY;
     }
@@ -67,7 +67,14 @@ class Obstacle {
     int getLowerY() {
       return lowerY;
     }
-
+    
+    void setPassed() {
+        passed = true;
+    }
+    
+    bool getPassed() {
+        return passed;
+    }
 };
 
 #endif
