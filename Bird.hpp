@@ -1,48 +1,65 @@
 #include <algoviz/SVG.hpp>
+
+#ifndef BIRD
+#define BIRD
+
 using namespace std;
 
 class Bird {
+    
   private:
     Image bird;
     SVG *drawing = nullptr;
-    int x = 200;
-    int y = 200;
-    int yStep = 10;
-
-    void show() {
-      bird.show();
-    }
-
-    void hide() {
-      bird.hide();
-    }
-    
-    void moveTo() {
-    }
+    int x, y ,vy;
+    double startX = 400;
+    double startY = 500;
+    int speed = 5;
+    int birdBigSize = 500;
+    int birdNormalSize = 100;
 
   public:
 
     Bird(SVG &drawing) {
       this->drawing = &drawing;
-      this->bird = Image("img/Bird.png", x, y, 40, 40, &drawing);
-      // bird.setSize(80, 80); - if needed
-    }
-
-    bool moveUp() {
-      bird.rotateTo(90);
-      bird.moveTo(x, y + yStep);
-      bird.rotateTo(-90);
+      x = startX;
+      y = startY;
+      bird = Image("img/Bee.svg", x, y, birdBigSize, birdBigSize, &drawing);
     }
 
     void moveDown() {
-      bird.moveTo(x, y - yStep);
+        vy = y + speed;
+        y = vy;
+        
+        bird.moveTo(x, y);
+    }
+    
+    void moveUp() {
+        vy = y - 23 * speed;
+        y = vy;
+        
+        bird.rotateTo(-20);
+        bird.moveTo(x, y);
+        bird.rotateTo(20);
     }
 
-    int getX() {
+    void center() {
+      x = startX;
+      y = startY;
+      bird.moveTo(x, y);
+    }
+
+    double getX() {
       return x;
     }
     
-    int getY() {
+    double getY() {
       return y;
     }
+
+    void setNormalSize() {
+      bird.setSize(birdNormalSize, birdNormalSize);
+    }
+
 };
+
+#endif
